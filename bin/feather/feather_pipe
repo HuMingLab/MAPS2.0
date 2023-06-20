@@ -37,7 +37,7 @@ def main():
 		os.makedirs(outdir)
 	if cmd == "map":
 		from feather_filter_chr import filter_main
-		filter_main(fastq1, fastq2, index, index_fa, chromap_loc, mapq, outdir, prefix, threads, optical, to_file = True)
+		filter_main(fastq1, fastq2, index, index_fa, mapq, outdir, prefix, threads, optical, to_file = True)
 		#write_bam_from_samstr(filter_output_sam, outdir + "/" + prefix + ".pairs.filtered.bam")
 		#proc = subprocess.Popen(["samtools", "view", "-bh"],# "-o", outdir + "/" + prefix + ".pairs.filtered.bam"],
 		#	stdin = input_tempfile, stdout = subprocess.PIPE)
@@ -87,7 +87,6 @@ def set_filter_parser_args(parser):
 	parser.add_argument("-f2", "--fastq2", help = "second fasta/bam file", required = True)
 	parser.add_argument("-b", "--index", help = "genome index for running chromap")
 	parser.add_argument("-fa", "--index-fa", help = "genome index fa for running chromap")
-	parser.add_argument("-chl", "--chromap-loc", help = "chromap location for running chromap")
 	parser.add_argument("-q", "--mapq", help = "MAPQ threshold", type = int)
 	parser.add_argument("-t", "--threads", help = "number of threads to use", type = int)
 	parser.add_argument("-d", "--optical-duplicate-distance", help = "distance for optical duplicate removal", type = int)
@@ -107,7 +106,6 @@ def set_preproc_parser_args(parser):
 	parser.add_argument("-f2", "--fastq2", help = "second fasta/bam file", required = True)
 	parser.add_argument("-b", "--index", help = "genome index for running bwa")
 	parser.add_argument("-fa", "--index-fa", help = "genome index fa for running chromap")
-	parser.add_argument("-chl", "--chromap-loc", help = "chromap location for running chromap")
 	parser.add_argument("-q", "--mapq", help = "MAPQ threshold", type = int)
 	parser.add_argument("-l", "--length-threshold", help = "length threshold for long/short splitting", type = int)
 	parser.add_argument("-t", "--threads", help = "number of threads to use", type = int)
