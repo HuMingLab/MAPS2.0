@@ -36,6 +36,14 @@ R Packages:
   * Bwa (v0.7.12)
   * VGAM (v1.1.2)
 
+**Chromap installation**
+Follow installation steps from : https://github.com/haowenz/chromap
+Add chromap installation path to LD_LIBRARY_PATH, if required.
+Before mapping and running MAPS pipeline, an index of the reference needs to be created and saved on the disk.
+Run following command :
+      chromap -i -r ref.fa -o index
+
+
 **Juicer tools (needed only if you want .hic file; in feather dir on github)**
 https://github.com/theaidenlab/juicer/wiki/Download
 
@@ -62,7 +70,7 @@ Download or clone from here: https://github.com/ijuric/MAPS
 ## Running MAPS
 Run one run_pipeline script per biological replica. For each biological replica, run_pipeline script runs feather, MAPS and MAPS-tools parts. Run MAPS pipeline for each replica before running it for merged dataset. That way, we will not need to map reads for merged dataset, but will use .bed/.bedpe files from each replica. It is crucial to add appropriate information about all biological replicas in the run_pipeline script. We show below how to do that.
 
-Copy MAPS/bin/run_pipeline.sh to MAPS/bin/run_pipeline_[PROJECT_NAME].sh, where [PROJECT_NAME] is the name of your set of biological replicas.
+Copy MAPS/bin/run_test.sh to MAPS/bin/run_pipeline_[PROJECT_NAME].sh, where [PROJECT_NAME] is the name of your set of biological replicas.
 
 In run_pipeline_[PROJECT_NAME].sh set parameters:
 
@@ -88,8 +96,12 @@ In run_pipeline_[PROJECT_NAME].sh set parameters:
   * Location of MACS2 peaks
 * organism
   * either mm10, hg19 or hg38, depending on which chromosome you use. Important for genomic features file. Also selecting this defines the number of chromosomes (19 for mouse, 22 for human).
+* chromap_loc
+  * Chromap installation path on system.
+* bwa_index_fa
+  * Reference. Set to path to chromap reference genome
 * bwa_index
-  * index of bwa. Set to path to bwa indexed genome
+  * index of reference. Set to path to chromap indexed genome
 * bin_size
   * resolution. Usually 5000 or 10000.  
 * binning_range
