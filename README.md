@@ -37,11 +37,11 @@ R Packages:
   * VGAM (v1.1.2)
 
 **Chromap installation** <br>
-Follow installation steps from : https://github.com/haowenz/chromap . 
-Add chromap installation path to LD_LIBRARY_PATH, if required.
-Before mapping and running MAPS pipeline, an index of the reference needs to be created and saved on the disk.
-Run following command :
-      chromap -i -r ref.fa -o index
+Follow installation steps from : https://github.com/haowenz/chromap <br>
+Add chromap installation path to LD_LIBRARY_PATH, if required. <br>
+Before mapping and running MAPS pipeline, an index of the reference needs to be created and saved on the disk. <br>
+Run following command : <br>
+      chromap -i -r ref.fa -o index <br>
 
 
 **Juicer tools (needed only if you want .hic file; in feather dir on github)**
