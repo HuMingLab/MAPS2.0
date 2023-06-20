@@ -29,20 +29,14 @@ flag_table_proper={(0, 16): (99, 147), (2048, 16): (99, 147), (0, 2064):  (99, 1
 #qseq="K00168:100:HF52YBBXX:4:1101:27580:1103"
 qseq = "K00168:100:HF52YBBXX:4:1101:27336:1103"
 
-def filter_main(fastq1, fastq2, bwa_index,bwa_index_fa,chromap_loc, mapq, outdir, prefix, threads, optical_duplicate_distance, to_file = False):
+def filter_main(fastq1, fastq2, index,index_fa, mapq, outdir, prefix, threads, optical_duplicate_distance, to_file = False):
 	sys.stdout = logger.Logger(outdir + "/" + prefix + ".feather.log")
 	print(time.ctime() + " starting mapping and filtering operation")
-	check_arguments(fastq1, fastq2, bwa_index, mapq, threads)
+	check_arguments(fastq1, fastq2, index, mapq, threads)
 	paired_filename, bwa1_filename, bwa2_filename, bwa1_sorted_filename, bwa2_sorted_filename, combined_bwa_filename, qc_filename = set_filenames(fastq1, fastq2, outdir, prefix)
-	#running bwa mem
-	# for fastq, bwa_filename in [(fastq1, bwa1_filename), (fastq2, bwa2_filename)]:
-		# if fastq.endswith(".fastq") or fastq.endswith("fastq.gz") or fastq.endswith("fq") or fastq.endswith("fq.gz"):
-		# 	bwa_mem(fastq1,fastq2, bwa_index, threads, bwa_filename)
-		# elif not (fastq.endswith(".sam") or fastq.endswith(".bam")):
-		# 	exit("Error: Input file for filtering should be of type fastq, fastq.gz, sam, or bam. Exiting!")
 		
 	if fastq1.endswith(".fastq") or fastq1.endswith("fastq.gz") or fastq1.endswith("fq") or fastq1.endswith("fq.gz"):
-			bwa_mem(fastq1,fastq2, bwa_index,bwa_index_fa,chromap_loc, threads, bwa1_filename)
+			bwa_mem(fastq1,fastq2, index,index_fa, threads, bwa1_filename)
 	elif not (fastq1.endswith(".sam") or fastq1.endswith(".bam")):
 			exit("Error: Input file for filtering should be of type fastq, fastq.gz, sam, or bam. Exiting!")
 			
@@ -52,15 +46,6 @@ def filter_main(fastq1, fastq2, bwa_index,bwa_index_fa,chromap_loc, mapq, outdir
 	else:
 		proc = subprocess.Popen("awk ' $1 !~ /@/ {print $1}' " + bwa1_filename  + "| uniq -c|wc -l", stdout = subprocess.PIPE, shell = True)
 		read_count = proc.stdout.read().decode("utf-8")
-
-	# #pairing and filtering alignments for chimeric reads
-	# for bwa_filename, bwa_sorted_filename in ([bwa1_filename, bwa1_sorted_filename], [bwa2_filename, bwa2_sorted_filename]):
-	# 	bwa = pysam.AlignmentFile(bwa_filename)
-	# 	if not is_sorted_queryname(bwa.header):
-	# 		print(time.ctime() + " calling samtools sort for " + bwa_filename + " storing in " + bwa_sorted_filename)
-	# 		pysam.sort("-o", bwa_sorted_filename , "-n", "-@", str(threads), bwa_filename)
-	# 	else:
-	# 		copyfile(bwa_filename, bwa_sorted_filename)
 	
 	#pairing and filtering alignments for chimeric reads
 	bwa = pysam.AlignmentFile(bwa1_filename)
@@ -75,10 +60,6 @@ def filter_main(fastq1, fastq2, bwa_index,bwa_index_fa,chromap_loc, mapq, outdir
 	
 	print(time.ctime() + " merging " + bwa1_sorted_filename)
 	pysam.merge("-n", "-f",  combined_bwa_filename, bwa1_sorted_filename)
-	# 
-	# print(time.ctime() + " filtering and pairing reads")
-	# # filter_pair_reads(combined_bwa_filename, mapq, paired_filename, qc_filename)
-	# 
 	# 
 	# #print(time.ctime() + " paired bam file generated. Calling fixmate")
 	# #print(paired_filename)
@@ -236,13 +217,10 @@ def set_tempfile(input_content = None, output_content = None, binary = True):
 	return(tfile)
 		
 
-def bwa_mem(fastq1,fastq2, bwa_index,bwa_index_fa, chromap_loc, threads, output_filename):
+def bwa_mem(fastq1,fastq2, index,index_fa, threads, output_filename):
 	print(time.ctime() + " calling chromap for " + fastq1 + fastq2)
 	#output_file = open(output_filename, "w")
-	#proc = subprocess.Popen(["bwa", "mem", "-t", str(threads), bwa_index, fastq], stdout = output_file, stderr = open(output_filename + ".log", 'w'))
-	print(chromap_loc,"--preset","hic","-t",str(threads), "-x", bwa_index,"-r" , bwa_index_fa, "-1" ,fastq1,"-2" ,fastq2,"--SAM", "-o",output_filename)
-	#proc = subprocess.Popen(["/home/mishras10/chromap/chromap", "-x", "/home/mishras10/mm10.index","-r" , bwa_index, "-1" ,fastq,"--SAM", "-o",output_filename], stderr = open(output_filename + ".log", 'w'))
-	proc = subprocess.Popen([chromap_loc,"--preset","hic","-t",str(threads), "-x", bwa_index,"-r" , bwa_index_fa, "-1" ,fastq1,"-2" ,fastq2,"--SAM", "-o",output_filename], stderr = open(output_filename + ".log", 'w'))
+	proc = subprocess.Popen(["chromap","--preset","hic","-t",str(threads), "-x", bwa_index,"-r" , bwa_index_fa, "-1" ,fastq1,"-2" ,fastq2,"--SAM", "-o",output_filename], stderr = open(output_filename + ".log", 'w'))
 	proc.wait()
 	#output_file.close()
 
@@ -305,7 +283,7 @@ def check_requirements():
 			exit("ERROR: " + requirement + " cannot be found. Please make sure it is " +
 			"installed and is in the system path. Exiting!")
 
-def check_arguments(fastq1, fastq2, bwa_index, mapq, threads):
+def check_arguments(fastq1, fastq2, index, mapq, threads):
 	check_file_existance((fastq1, fastq2))
 	if fastq1 == fastq2: exit("ERROR: Input fastq files should be different. Exiting!")
 	if (int(threads) < 1):
