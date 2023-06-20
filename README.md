@@ -33,7 +33,6 @@ R Packages:
   * data.table package (v1.11.2)
   * bedtools (v2.27.1)
   * Samtools(v1.10 or later)
-  * Bwa (v0.7.12)
   * VGAM (v1.1.2)
 
 **Chromap installation** <br>
@@ -98,9 +97,9 @@ In run_pipeline_[PROJECT_NAME].sh set parameters:
   * either mm10, hg19 or hg38, depending on which chromosome you use. Important for genomic features file. Also selecting this defines the number of chromosomes (19 for mouse, 22 for human).
 * chromap_loc
   * Chromap installation path on system.
-* bwa_index_fa
+* index_fa
   * Reference. Set to path to chromap reference genome
-* bwa_index
+* index
   * index of reference. Set to path to chromap indexed genome
 * bin_size
   * resolution. Usually 5000 or 10000.  
