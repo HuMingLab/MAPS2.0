@@ -64,32 +64,32 @@ hic_dir="tempfiles/hic_tempfiles"
 if [ $organism == "mm10" ]; then
 	if [ -z $bwa_index ]; then
 		index_fa="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/mm10_chrAll.fa"
-  		index="/home/mishras10/mm10_chrAll.index"
-  		chromap_loc="/home/mishras10/chromap/chromap"
+  		index="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/mm10_chrAll.index"
+  		chromap_loc="/home/hum/jurici/MAPS/chromap/chromap"
 	fi
 	genomic_feat_filepath=$cwd"/../MAPS_data_files/"$organism"/genomic_features/F_GC_M_MboI_"$resolution"Kb_el.mm10.txt"
 	chr_count=19
 elif [ $organism == "mm9" ]; then
 	if [ -z $index ]; then
- 		index="/home/mishras10/mm9.index"
-  		chromap_loc="/home/mishras10/chromap/chromap"
-		index_fa="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/mm9.fa"
+ 		index_fa="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/mm9.fa"
+  		index="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/mm9.index"
+  		chromap_loc="/home/hum/jurici/MAPS/chromap/chromap"
 	fi
 	genomic_feat_filepath=$cwd"/../MAPS_data_files/"$organism"/genomic_features/F_GC_M_MboI_"$resolution"Kb_el.mm9.txt"
 	chr_count=19
 elif [ $organism == "hg19" ]; then
 	if [ -z $index ]; then
-		chromap_loc="/home/mishras10/chromap/chromap"
 		index_fa="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/hg19.fa"
-  		index="/home/mishras10/hg19.index"
+  		index="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/hg19.index"
+  		chromap_loc="/home/hum/jurici/MAPS/chromap/chromap"
 	fi
 	genomic_feat_filepath=$cwd"/../MAPS_data_files/"$organism"/genomic_features/F_GC_M_MboI_"$resolution"Kb_el.hg19.txt"
 	chr_count=22
 elif [ $organism == "hg38" ]; then
 	if [ -z $index ]; then
-		index="/home/mishras10/hg38.index"
-		chromap_loc="/home/mishras10/chromap/chromap"
-		index_fa="/home/mishras10/hg38.fa"
+		index_fa="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/hg38.fa"
+  		index="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/hg38.index"
+  		chromap_loc="/home/hum/jurici/MAPS/chromap/chromap"
 	fi
 	genomic_feat_filepath=$cwd"/../MAPS_data_files/"$organism"/genomic_features/F_GC_M_MboI_"$resolution"Kb_el.GRCh38.txt"
 	chr_count=22
@@ -130,7 +130,7 @@ if [ $feather -eq 1 ]; then
 			$cwd/feather/concat_hic.sh  $feather_output $dataset_name $hic_dir "${hic_array[@]}"
 		fi
 	else
-		$python_path $cwd/feather/feather_pipe preprocess -o $feather_output -p $dataset_name -f1 $fastq1 -f2 $fastq2 -b $bwa_index -fa $bwa_index_fa -chl $chromap_loc -q $mapq -l $length_cutoff -t $threads -c $per_chr -j $generate_hic -a $macs2_filepath -d $optical_duplicate_distance
+		$python_path $cwd/feather/feather_pipe preprocess -o $feather_output -p $dataset_name -f1 $fastq1 -f2 $fastq2 -b $bindex -fa $index_fa -chl $chromap_loc -q $mapq -l $length_cutoff -t $threads -c $per_chr -j $generate_hic -a $macs2_filepath -d $optical_duplicate_distance
 		qc_filename=$feather_output/$dataset_name".feather.qc"
 		temp_qc_file=$feather_output/tempfiles/$dataset_name".feather.qc.modified"
 		#printf "dataset name:\t"$dataset_name"\n" >> $qc_filename
