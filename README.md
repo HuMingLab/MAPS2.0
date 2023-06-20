@@ -36,7 +36,7 @@ R Packages:
   * Bwa (v0.7.12)
   * VGAM (v1.1.2)
 
-**Chromap installation**
+**Chromap installation** \n
 Follow installation steps from : https://github.com/haowenz/chromap
 Add chromap installation path to LD_LIBRARY_PATH, if required.
 Before mapping and running MAPS pipeline, an index of the reference needs to be created and saved on the disk.
