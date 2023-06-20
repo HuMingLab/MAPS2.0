@@ -16,9 +16,9 @@ fastq_dir="/home/hum/021720_backup_ftp_hum-collab/RenBingLab/4DN_JAP/fastq"
 outdir="/home/mishras10/MAPS_Plaqseq_githubtest"
 macs2_filepath="/home/hum/021720_backup_ftp_hum-collab/RenBingLab/4DN_JAP/1D_anchor/ENCFF456NIF.bed" #copied and unzipped from the fastq_dir
 organism="hg38"
-bwa_index=""
 chromap_loc=""
-bwa_index_fa=""
+index_fa=""
+index=""
 bin_size=10000
 binning_range=1000000
 fdr=2 # this is used just for labeling. do not change
@@ -63,28 +63,33 @@ cwd="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 hic_dir="tempfiles/hic_tempfiles"
 if [ $organism == "mm10" ]; then
 	if [ -z $bwa_index ]; then
-        	bwa_index="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/mm10_chrAll.fa"
+		index_fa="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/mm10_chrAll.fa"
+  		index="/home/mishras10/mm10_chrAll.index"
+  		chromap_loc="/home/mishras10/chromap/chromap"
 	fi
 	genomic_feat_filepath=$cwd"/../MAPS_data_files/"$organism"/genomic_features/F_GC_M_MboI_"$resolution"Kb_el.mm10.txt"
 	chr_count=19
 elif [ $organism == "mm9" ]; then
-	if [ -z $bwa_index ]; then
-		bwa_index="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/mm9.fa"
+	if [ -z $index ]; then
+ 		index="/home/mishras10/mm9.index"
+  		chromap_loc="/home/mishras10/chromap/chromap"
+		index_fa="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/mm9.fa"
 	fi
 	genomic_feat_filepath=$cwd"/../MAPS_data_files/"$organism"/genomic_features/F_GC_M_MboI_"$resolution"Kb_el.mm9.txt"
 	chr_count=19
 elif [ $organism == "hg19" ]; then
-	if [ -z $bwa_index ]; then
-		bwa_index="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/hg19.fa"
+	if [ -z $index ]; then
+		chromap_loc="/home/mishras10/chromap/chromap"
+		index_fa="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/hg19.fa"
+  		index="/home/mishras10/hg19.index"
 	fi
 	genomic_feat_filepath=$cwd"/../MAPS_data_files/"$organism"/genomic_features/F_GC_M_MboI_"$resolution"Kb_el.hg19.txt"
 	chr_count=22
 elif [ $organism == "hg38" ]; then
-	if [ -z $bwa_index ]; then
-		#bwa_index="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta"
-		bwa_index="/home/mishras10/hg38.index"
+	if [ -z $index ]; then
+		index="/home/mishras10/hg38.index"
 		chromap_loc="/home/mishras10/chromap/chromap"
-		bwa_index_fa="/home/mishras10/hg38.fa"
+		index_fa="/home/mishras10/hg38.fa"
 	fi
 	genomic_feat_filepath=$cwd"/../MAPS_data_files/"$organism"/genomic_features/F_GC_M_MboI_"$resolution"Kb_el.GRCh38.txt"
 	chr_count=22
