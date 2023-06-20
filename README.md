@@ -95,8 +95,6 @@ In run_pipeline_[PROJECT_NAME].sh set parameters:
   * Location of MACS2 peaks
 * organism
   * either mm10, hg19 or hg38, depending on which chromosome you use. Important for genomic features file. Also selecting this defines the number of chromosomes (19 for mouse, 22 for human).
-* chromap_loc
-  * Chromap installation path on system.
 * index_fa
   * Reference. Set to path to chromap reference genome
 * index
