@@ -32,7 +32,7 @@ R Packages:
   * VGAM package (v1.0.5)
   * data.table package (v1.11.2)
   * bedtools (v2.27.1)
-  * Samtools(v1.17)
+  * Samtools(v1.6 or later)
   * VGAM (v1.1.2)
 
 **Chromap installation** <br>
