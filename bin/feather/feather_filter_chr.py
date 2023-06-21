@@ -72,7 +72,8 @@ def filter_main(fastq1, fastq2, index,index_fa, mapq, outdir, prefix, threads, o
 	print(time.ctime() + " calling samtools markdup")
 	# #pysam.rmdup(paired_filename + ".srt.bam", paired_filename + ".rmdup.bam")
 	
-	proc = subprocess.Popen(" ".join(["samtools markdup", "-r -m s -s -f", paired_filename + ".fixmated.markdup.stats", "-@", str(threads), "-d", str(optical_duplicate_distance), paired_filename + ".srt.bam", paired_filename + ".rmdup.bam"]), shell = True)
+	#proc = subprocess.Popen(" ".join(["samtools markdup", "-r -m s -s -f", paired_filename + ".fixmated.markdup.stats", "-@", str(threads), "-d", str(optical_duplicate_distance), paired_filename + ".srt.bam", paired_filename + ".rmdup.bam"]), shell = True)
+	proc = subprocess.Popen(" ".join(["samtools markdup", "-r -s", "-@", str(threads), paired_filename + ".srt.bam", paired_filename + ".rmdup.bam"]), shell = True)
 	proc.communicate()
 	
 	# #proc = subprocess.Popen(["samtools", "rmdup", paired_filename + ".srt.bam", paired_filename + ".rmdup.bam"])
