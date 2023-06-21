@@ -62,7 +62,7 @@ resolution=$(bc <<< "$bin_size/1000")
 cwd="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 hic_dir="tempfiles/hic_tempfiles"
 if [ $organism == "mm10" ]; then
-	if [ -z $bwa_index ]; then
+	if [ -z $index ]; then
 		index_fa="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/mm10_chrAll.fa"
   		index="/home/hum/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/mm10_chrAll.index"
   		#chromap_loc="/home/hum/jurici/MAPS/chromap/chromap"
