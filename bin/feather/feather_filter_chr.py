@@ -221,7 +221,7 @@ def set_tempfile(input_content = None, output_content = None, binary = True):
 def bwa_mem(fastq1,fastq2, index,index_fa, threads, output_filename):
 	print(time.ctime() + " calling chromap for " + fastq1 + fastq2)
 	#output_file = open(output_filename, "w")
-	proc = subprocess.Popen(["chromap","--preset","hic","-t",str(threads), "-x", bwa_index,"-r" , bwa_index_fa, "-1" ,fastq1,"-2" ,fastq2,"--SAM", "-o",output_filename], stderr = open(output_filename + ".log", 'w'))
+	proc = subprocess.Popen(["chromap","--preset","hic","-t",str(threads), "-x", index,"-r" , index_fa, "-1" ,fastq1,"-2" ,fastq2,"--SAM", "-o",output_filename], stderr = open(output_filename + ".log", 'w'))
 	proc.wait()
 	#output_file.close()
 
