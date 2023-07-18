@@ -51,7 +51,7 @@ https://github.com/theaidenlab/juicer/wiki/Download
 
 *Numbers in parentheses are versions we used, and while it is very likely that MAPS will run with newer versions, we do not guarantee it.*
 
-Add bedtools, samtools to the path. Check here how to add to set up path on linux:
+Add chromap, bedtools, samtools to the path. Check here how to add to set up path on linux:
 http://hmgaudecker.github.io/econ-python-environment/paths.html
 
 Index your reference genome using chromap
