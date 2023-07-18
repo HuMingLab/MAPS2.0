@@ -1,6 +1,6 @@
 # !! An Important Announcement !! 
 
-<b>Please make sure install specific versions mentioned for samtools and VGAM i.e VGAM package (v1.0.5) and Samtools(v1.13). Any other version will not work with the MAPS pipeline.</b>
+<b>Please make sure to install specific versions mentioned for samtools and VGAM i.e VGAM package (v1.0.5) and Samtools(v1.13). Any other version will not work with the MAPS pipeline.</b>
 
 
 # MAPS pipeline user manual
