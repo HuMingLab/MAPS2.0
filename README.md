@@ -26,9 +26,9 @@ Python libraries:
 
 R Packages:
   * MASS (v7.3-50)
-  * VGAM package (v1.0.5)
-Please use following command to install specific version for VGAM : 
-require(devtools)
+  * VGAM package (v1.0.5)<br>
+Please use following command to install specific version for VGAM :<br> 
+require(devtools)<br>
 install_version("VGAM", version = "1.0.5", repos = "http://cran.us.r-project.org")
   * data.table package (v1.11.2)
 
