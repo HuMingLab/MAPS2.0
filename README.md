@@ -14,6 +14,9 @@ For any questions regarding MAPS please send mail to Ivan Juric ( ivan.juric.gen
 ### Downloading prerequisites and MAPS pipeline
 MAPS requires following programs and packages. Install them prior to using MAPS. MAPS runs on Linux.
 
+* bedtools (v2.27.1)
+* Samtools(v1.13)
+  
 **python 3.4 (or later)**
 
 Python libraries:
@@ -29,8 +32,6 @@ R Packages:
   * MASS (v7.3-50)
   * VGAM package (v1.0.5)
   * data.table package (v1.11.2)
-  * bedtools (v2.27.1)
-  * Samtools(v1.13)
 
 **Chromap installation** <br>
 Follow installation steps from : https://github.com/haowenz/chromap <br>
