@@ -13,7 +13,7 @@ MAPS requires following programs and packages. Install them prior to using MAPS.
 * bedtools (v2.27.1)
 * Samtools(v1.13)<br>
   Please use following command to install specific version for samtools :<br>
-  conda install -c conda-forge -c bioconda samtools=1.13
+  conda install -c bioconda samtools=1.13
   
 **python 3.4 (or later)**
 
