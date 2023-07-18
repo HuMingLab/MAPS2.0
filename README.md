@@ -11,7 +11,9 @@ For any questions regarding MAPS please send mail to Ivan Juric ( ivan.juric.gen
 MAPS requires following programs and packages. Install them prior to using MAPS. MAPS runs on Linux.
 
 * bedtools (v2.27.1)
-* Samtools(v1.13)
+* Samtools(v1.13)<br>
+  Please use following command to install specific version for samtools :<br>
+  conda install -c conda-forge -c bioconda samtools=1.13
   
 **python 3.4 (or later)**
 
