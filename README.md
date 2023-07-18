@@ -1,8 +1,3 @@
-# !! An Important Announcement !! 
-
-<b>Please make sure to install specific versions mentioned for samtools and VGAM i.e VGAM package (v1.0.5) and Samtools(v1.13). Any other version will not work with the MAPS pipeline.</b>
-
-
 # MAPS pipeline user manual
 ## What is MAPS pipeline?
 MAPS (Model-based Analysis of PLAC-Seq data) pipeline is a a set of multiple scripts used to analyze PLAC-Seq and HiChIP data. MAPS pipeline contains multiple scripts. The run_pipeline.sh is a prototypes of a shell script containing the locations of files needed to run MAPS is entered as well as calls for different MAPS pipeline scripts. Internally, there are two parts of MAPS pipeline. First part, called feather, does mapping and preprocessing of pair-end reads and creates long and short .bed/.bedpe files. Second part, called MAPS, does read binning and peak calling.
@@ -33,6 +28,10 @@ R Packages:
   * MASS (v7.3-50)
   * VGAM package (v1.0.5)
   * data.table package (v1.11.2)
+
+# !! An Important Announcement !! 
+
+<b>Please make sure to install specific versions mentioned for samtools and VGAM i.e VGAM package (v1.0.5) and Samtools(v1.13). Any other version will not work with the MAPS pipeline.</b>
 
 **Chromap installation** <br>
 Follow installation steps from : https://github.com/haowenz/chromap <br>
