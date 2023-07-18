@@ -47,13 +47,13 @@ https://github.com/theaidenlab/juicer/wiki/Download
 
 *Numbers in parentheses are versions we used, and while it is very likely that MAPS will run with newer versions, we do not guarantee it.*
 
-Add bwa, bedtools, samtools to the path. Check here how to add to set up path on linux:
+Add bedtools, samtools to the path. Check here how to add to set up path on linux:
 http://hmgaudecker.github.io/econ-python-environment/paths.html
 
-Index your reference genome using bwa
-To index genome using bwa, type:
+Index your reference genome using chromap
+To index genome using chromap, type:
 '''
-bwa index [ref_genome_fastq_file]
+chromap -i -r ref.fa -o index
 '''
 Download reference genome. In our paper, we use ones downloaded from ucsc genome browser. For example:
 http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/chromFa.tar.gz
@@ -119,8 +119,6 @@ chr15	1300000
   * regression model. Can be pospoisson or negbinom. MAPS supports positive poisson (pospoisson) or negative binomial (negbinom) regression. Default value is pospoisson (positive poisson regression).
 * sex_chroms_to_process
   * either X,Y,XY or NA. This specifies which (if any) sex chromosomes the user wants to run MAPS on: X = X chr only, Y = Y chr only, XY = both X and Y chroms, NA = none (just autosomal). Default value is NA.
-* bwa_index
-  * path to bwa indexed reference genome
 * fdr
   * this is used for labeling purposes only. Do not change. See the MAPS paper for more details on how fdr is picked.
 
@@ -171,7 +169,6 @@ Rscript_path=/opt/R-3.4.3/lib64/R/bin/Rscript
 fastq_dir="/home/jurici/MAPS/examples/test_set1"
 outdir="/home/jurici/MAPS/examples/test_set1/output"
 macs2_filepath="/home/jurici/MAPS/examples/test_set1/macs2_peaks_final.replicated.narrowPeak"
-bwa_index="/home/jurici/MAPS/MAPS_data_files/"$organism"/BWA_index/mm10_chrAll.fa"
 ```
 fastq and 1D peaks (macs2) files are in your MAPS folder (/home/[USER]/MAPS/examples)
 
