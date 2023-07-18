@@ -1,7 +1,5 @@
 # !! An Important Announcement !! 
-March 25th 2022: MAPS has a new home!
-For a newest version check here:
-https://github.com/HuMingLab/MAPS
+Please make sure install specific versions mentioned for samtools and VGAM i.e VGAM package (v1.0.5) and Samtools(v1.13).
 
 
 # MAPS pipeline user manual
@@ -33,7 +31,6 @@ R Packages:
   * data.table package (v1.11.2)
   * bedtools (v2.27.1)
   * Samtools(v1.13)
-  * VGAM (v1.1.2)
 
 **Chromap installation** <br>
 Follow installation steps from : https://github.com/haowenz/chromap <br>
